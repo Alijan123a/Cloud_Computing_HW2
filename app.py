@@ -5,7 +5,7 @@ import redis
 app = Flask(__name__)
 cache = redis.StrictRedis(host='redis', port=6379, db=0)
 
-API_KEY = "your_api_key"
+API_KEY = "7yrnhzcTJk3vFd07nzSROA==vRxkEynraZ3Flbyn"
 BASE_URL = "https://api.api-ninjas.com/v1"
 
 @app.route('/define', methods=['GET'])
