@@ -8,9 +8,13 @@ cache = redis.StrictRedis(host='redis', port=6379, db=0)
 API_KEY = "7yrnhzcTJk3vFd07nzSROA==vRxkEynraZ3Flbyn"
 BASE_URL = "https://api.api-ninjas.com/v1"
 
-@app.route('/define', methods=['GET'])
-def define_word():
-    word = request.args.get('word')
+@app.route('/define', methods=['POST'])
+def define_word(*args):
+    word = None
+    if args:
+        word = args[0]
+    else:
+        word = request.form["word"]
     if not word:
         return jsonify({"error": "No word provided"}), 400
 
@@ -34,7 +38,7 @@ def random_word():
     response = requests.get(f"{BASE_URL}/randomword", headers=headers)
     if response.status_code == 200:
         word = response.json().get("word")
-        return define_word()
+        return define_word(word[0])
     else:
         return jsonify({"error": "Failed to retrieve random word"}), 500
 
