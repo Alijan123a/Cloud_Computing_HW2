@@ -1,0 +1,34 @@
+version: "3.8"
+
+services:
+  redis:
+    image: ghcr.io/aut-cloud-computing-fall-2024/redis
+    container_name: redis
+    networks:
+      - my-network
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data 
+
+  learning_api:
+    image: alijan123a/learning_english_api:latest
+    container_name: learning_english_api
+    depends_on:
+      - redis
+    networks:
+      - my-network
+    ports:
+      - "5000:5000"
+    environment:
+      - REDIS_HOST=redis  
+      - REDIS_PORT=6379  
+      - REDIS_CACHE_DURATION=50
+
+networks:
+  my-network:
+    driver: bridge
+
+volumes:
+  redis_data:
+    driver: local
