@@ -100,8 +100,8 @@ def define_word(*args):
         return jsonify({"error": "Failed to retrieve definition"}), 500
 
 
-@app.route('/random_word', methods=['GET'])
-def random_wo():
+@app.route('/randomword', methods=['GET'])
+def random_word():
     print("random")
     endpoint = '/randomword'
     REQUEST_COUNT.labels(endpoint=endpoint, method='GET').inc()
