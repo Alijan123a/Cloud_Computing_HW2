@@ -100,7 +100,7 @@ def define_word(*args):
         return jsonify({"error": "Failed to retrieve definition"}), 500
 
 
-@app.route('/random', methods=['GET'])
+@app.route('/random_word', methods=['GET'])
 def random_word():
     print("random")
     endpoint = '/randomword'
