@@ -101,7 +101,7 @@ def define_word(*args):
 
 
 @app.route('/random_word', methods=['GET'])
-def random_wor():
+def random_wo():
     print("random")
     endpoint = '/randomword'
     REQUEST_COUNT.labels(endpoint=endpoint, method='GET').inc()
